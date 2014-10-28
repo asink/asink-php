@@ -38,15 +38,15 @@ running, in Laravel you can run command like so:
 
 Route::get('/asink-test', function() {
 
-	Asink::addTask('make-directory', array(
-		"command" => "mkdir",
-		"args"    => [
-			"my-dir-1",
-			"my-dir-2"
-		]
-	));
+    Asink::addTask('make-directory', array(
+        "command" => "mkdir",
+        "args"    => [
+            "my-dir-1",
+            "my-dir-2"
+        ]
+    ));
 
-	Asink::start();
+    Asink::start();
 
 });
 ```
@@ -60,12 +60,39 @@ require("vendor/autoload.php");
 
 $client = new Asink\Component\Client();
 
+$client->addTask("make-directory", array(
+    "command" => "mkdir",
+    "args"    => [
+        "my-dir-1",
+        "my-dir-2"
+    ]
+));
+
+$client->start();
+```
+
+### Options
+
+There are various options and things you can do in terms of
+organising your commands and in which way they are ran. Here
+are [the docs](https://github.com/GroundSix/asink#configuring)
+for Asink which show what options can be used.
+
+```php
 $client->addTask("do-ls", array(
-	"command" => "mkdir",
-	"args"    => [
-		"my-dir-1",
-		"my-dir-2"
-	]
+    "command" => "mkdir",   // The root command
+    "args"    => [          // Add command arguments as an array
+        "my-dir-1",
+        "my-dir-2"
+    ],
+    "count"   => [1, 1],    // How many times do we want to run it?
+    "dir"     => "~",       // Which directory should it be ran in?
+    "group"   => "stuff",   // Should it be ran as part of a group?
+    "require" => "do-ls"    // Do we require anything to run first?
+));
+
+$client->addTask("do-ls", array(
+    "command" => "ls"
 ));
 
 $client->start();
