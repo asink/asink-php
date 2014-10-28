@@ -1,8 +1,16 @@
 # Asink PHP
 
-A very simple and NOT finished client library for [Asink](https://github.com/GroundSix/asink)
+A simple PHP client library for [Asink](https://github.com/GroundSix/asink).
+
 
 ### Usage
+
+#### Start Asink
+
+```bash
+$ asink server
+[asink] listening on :3000
+```
 
 Install package via composer
 
