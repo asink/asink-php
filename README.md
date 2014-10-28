@@ -97,3 +97,11 @@ $client->addTask("do-ls", array(
 
 $client->start();
 ```
+
+## License
+
+[MIT](https://raw.githubusercontent.com/asink/asink-php/master/LICENSE)
+
+* * *
+
+![Ground Six](https://raw.githubusercontent.com/GroundSix/asink/master/images/groundsix.jpg)
