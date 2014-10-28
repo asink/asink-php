@@ -82,7 +82,8 @@ class Client
             $this->baseUrl,
             array(
                 'headers' => ['Content-type' => 'application/json'],
-                'body'    => $this->requestBody
+                'body'    => $this->requestBody,
+                'future'  => true
             )
         );
     }
