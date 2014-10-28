@@ -25,6 +25,7 @@ class Client
         $tasks,
         $baseUrl,
         $guzzleClient,
+        $future,
         $requestBody;
 
     /**
@@ -37,6 +38,7 @@ class Client
         $this->baseUrl      = "http://localhost:3000";
         $this->tasks        = array("tasks" => array());
         $this->guzzleClient = new \GuzzleHttp\Client();
+        $this->future  	    = true;
     }
 
     /**
@@ -49,6 +51,17 @@ class Client
     public function setBaseUrl($base_url)
     {
         $this->baseUrl = $base_url;
+    }
+
+    /**
+     * Decides whether or not this request will be
+     * made asynchronously or not
+     * 
+     * @param boolean $future
+     */
+    public function setFuture($future = true)
+    {
+    	$this->future = $future;
     }
 
     /**
@@ -83,7 +96,7 @@ class Client
             array(
                 'headers' => ['Content-type' => 'application/json'],
                 'body'    => $this->requestBody,
-                'future'  => true
+                'future'  => $this->future
             )
         );
     }
